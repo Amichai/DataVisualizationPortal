@@ -1,0 +1,600 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="VisualizationModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="VisualizationModelStoreContainer">
+          <EntitySet Name="Hashtag" EntityType="VisualizationModel.Store.Hashtag" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Keywords" EntityType="VisualizationModel.Store.Keywords" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Media" EntityType="VisualizationModel.Store.Media" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SiteTitles" EntityType="VisualizationModel.Store.SiteTitles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Tweet" EntityType="VisualizationModel.Store.Tweet" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TweetHashtag" EntityType="VisualizationModel.Store.TweetHashtag" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="TweetWebsite" EntityType="VisualizationModel.Store.TweetWebsite" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Website" EntityType="VisualizationModel.Store.Website" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="WebsiteKeyword" EntityType="VisualizationModel.Store.WebsiteKeyword" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Media_0" Association="VisualizationModel.Store.FK_Media_0">
+            <End Role="Website" EntitySet="Website" />
+            <End Role="Media" EntitySet="Media" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TweetHashtag_0" Association="VisualizationModel.Store.FK_TweetHashtag_0">
+            <End Role="Tweet" EntitySet="Tweet" />
+            <End Role="TweetHashtag" EntitySet="TweetHashtag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TweetHashtag_1" Association="VisualizationModel.Store.FK_TweetHashtag_1">
+            <End Role="Hashtag" EntitySet="Hashtag" />
+            <End Role="TweetHashtag" EntitySet="TweetHashtag" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TweetWebsite2_0" Association="VisualizationModel.Store.FK_TweetWebsite2_0">
+            <End Role="Tweet" EntitySet="Tweet" />
+            <End Role="TweetWebsite" EntitySet="TweetWebsite" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TweetWebsite2_1" Association="VisualizationModel.Store.FK_TweetWebsite2_1">
+            <End Role="Website" EntitySet="Website" />
+            <End Role="TweetWebsite" EntitySet="TweetWebsite" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Website_0" Association="VisualizationModel.Store.FK_Website_0">
+            <End Role="Tweet" EntitySet="Tweet" />
+            <End Role="Website" EntitySet="Website" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebsiteKeyword_0" Association="VisualizationModel.Store.FK_WebsiteKeyword_0">
+            <End Role="Website" EntitySet="Website" />
+            <End Role="WebsiteKeyword" EntitySet="WebsiteKeyword" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebsiteKeyword_1" Association="VisualizationModel.Store.FK_WebsiteKeyword_1">
+            <End Role="Keywords" EntitySet="Keywords" />
+            <End Role="WebsiteKeyword" EntitySet="WebsiteKeyword" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Hashtag">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Tag" Type="nvarchar" Nullable="false" MaxLength="120" />
+        </EntityType>
+        <EntityType Name="Keywords">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Keyword" Type="nvarchar" Nullable="false" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Media">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Url" Type="nvarchar" Nullable="false" MaxLength="600" />
+          <Property Name="SourceSiteID" Type="int" Nullable="false" />
+          <Property Name="Width" Type="int" />
+          <Property Name="Height" Type="int" />
+          <Property Name="Type" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="SiteTitles">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="600" />
+        </EntityType>
+        <EntityType Name="Tweet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TweetID" Type="nvarchar" Nullable="false" MaxLength="36" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="100" />
+          <Property Name="TweetText" Type="nvarchar" Nullable="false" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="TweetHashtag">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TweetID" Type="int" Nullable="false" />
+          <Property Name="HashtagID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TweetWebsite">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TweetID" Type="int" Nullable="false" />
+          <Property Name="WebsiteID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Website">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="600" />
+          <Property Name="Url" Type="nvarchar" Nullable="false" MaxLength="600" />
+          <Property Name="HitCount" Type="int" Nullable="false" />
+          <Property Name="TweetID" Type="int" Nullable="false" />
+          <Property Name="LongUrlTitle" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="DisplayUrl" Type="nvarchar" MaxLength="600" />
+        </EntityType>
+        <EntityType Name="WebsiteKeyword">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="WebsiteID" Type="int" Nullable="false" />
+          <Property Name="KeywordID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Media_0">
+          <End Role="Website" Type="VisualizationModel.Store.Website" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Media" Type="VisualizationModel.Store.Media" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Website">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Media">
+              <PropertyRef Name="SourceSiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TweetHashtag_0">
+          <End Role="Tweet" Type="VisualizationModel.Store.Tweet" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TweetHashtag" Type="VisualizationModel.Store.TweetHashtag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tweet">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TweetHashtag">
+              <PropertyRef Name="TweetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TweetHashtag_1">
+          <End Role="Hashtag" Type="VisualizationModel.Store.Hashtag" Multiplicity="1" />
+          <End Role="TweetHashtag" Type="VisualizationModel.Store.TweetHashtag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hashtag">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TweetHashtag">
+              <PropertyRef Name="HashtagID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TweetWebsite2_0">
+          <End Role="Tweet" Type="VisualizationModel.Store.Tweet" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TweetWebsite" Type="VisualizationModel.Store.TweetWebsite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tweet">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TweetWebsite">
+              <PropertyRef Name="TweetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TweetWebsite2_1">
+          <End Role="Website" Type="VisualizationModel.Store.Website" Multiplicity="1" />
+          <End Role="TweetWebsite" Type="VisualizationModel.Store.TweetWebsite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Website">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TweetWebsite">
+              <PropertyRef Name="WebsiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Website_0">
+          <End Role="Tweet" Type="VisualizationModel.Store.Tweet" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Website" Type="VisualizationModel.Store.Website" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tweet">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Website">
+              <PropertyRef Name="TweetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WebsiteKeyword_0">
+          <End Role="Website" Type="VisualizationModel.Store.Website" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WebsiteKeyword" Type="VisualizationModel.Store.WebsiteKeyword" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Website">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WebsiteKeyword">
+              <PropertyRef Name="WebsiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WebsiteKeyword_1">
+          <End Role="Keywords" Type="VisualizationModel.Store.Keywords" Multiplicity="1" />
+          <End Role="WebsiteKeyword" Type="VisualizationModel.Store.WebsiteKeyword" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Keywords">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WebsiteKeyword">
+              <PropertyRef Name="KeywordID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VisualizationModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="VisualizationEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Hashtags" EntityType="VisualizationModel.Hashtag" />
+          <EntitySet Name="Keywords" EntityType="VisualizationModel.Keyword" />
+          <EntitySet Name="Media" EntityType="VisualizationModel.Medium" />
+          <EntitySet Name="Tweets" EntityType="VisualizationModel.Tweet" />
+          <EntitySet Name="TweetHashtags" EntityType="VisualizationModel.TweetHashtag" />
+          <EntitySet Name="TweetWebsites" EntityType="VisualizationModel.TweetWebsite" />
+          <EntitySet Name="Websites" EntityType="VisualizationModel.Website" />
+          <EntitySet Name="WebsiteKeywords" EntityType="VisualizationModel.WebsiteKeyword" />
+          <AssociationSet Name="FK_TweetHashtag_1" Association="VisualizationModel.FK_TweetHashtag_1">
+            <End Role="Hashtag" EntitySet="Hashtags" />
+            <End Role="TweetHashtag" EntitySet="TweetHashtags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebsiteKeyword_1" Association="VisualizationModel.FK_WebsiteKeyword_1">
+            <End Role="Keywords" EntitySet="Keywords" />
+            <End Role="WebsiteKeyword" EntitySet="WebsiteKeywords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Media_0" Association="VisualizationModel.FK_Media_0">
+            <End Role="Website" EntitySet="Websites" />
+            <End Role="Media" EntitySet="Media" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TweetHashtag_0" Association="VisualizationModel.FK_TweetHashtag_0">
+            <End Role="Tweet" EntitySet="Tweets" />
+            <End Role="TweetHashtag" EntitySet="TweetHashtags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TweetWebsite2_0" Association="VisualizationModel.FK_TweetWebsite2_0">
+            <End Role="Tweet" EntitySet="Tweets" />
+            <End Role="TweetWebsite" EntitySet="TweetWebsites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Website_0" Association="VisualizationModel.FK_Website_0">
+            <End Role="Tweet" EntitySet="Tweets" />
+            <End Role="Website" EntitySet="Websites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TweetWebsite2_1" Association="VisualizationModel.FK_TweetWebsite2_1">
+            <End Role="Website" EntitySet="Websites" />
+            <End Role="TweetWebsite" EntitySet="TweetWebsites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WebsiteKeyword_0" Association="VisualizationModel.FK_WebsiteKeyword_0">
+            <End Role="Website" EntitySet="Websites" />
+            <End Role="WebsiteKeyword" EntitySet="WebsiteKeywords" />
+          </AssociationSet>
+          <EntitySet Name="SiteTitles" EntityType="VisualizationModel.SiteTitle" />
+        </EntityContainer>
+        <EntityType Name="Hashtag">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Tag" Type="String" Nullable="false" MaxLength="120" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="TweetHashtags" Relationship="VisualizationModel.FK_TweetHashtag_1" FromRole="Hashtag" ToRole="TweetHashtag" />
+        </EntityType>
+        <EntityType Name="Keyword">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Keyword1" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="WebsiteKeywords" Relationship="VisualizationModel.FK_WebsiteKeyword_1" FromRole="Keywords" ToRole="WebsiteKeyword" />
+        </EntityType>
+        <EntityType Name="Medium">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Url" Type="String" Nullable="false" MaxLength="600" Unicode="true" FixedLength="false" />
+          <Property Name="SourceSiteID" Type="Int32" Nullable="false" />
+          <Property Name="Width" Type="Int32" />
+          <Property Name="Height" Type="Int32" />
+          <Property Name="Type" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Website" Relationship="VisualizationModel.FK_Media_0" FromRole="Media" ToRole="Website" />
+        </EntityType>
+        <EntityType Name="Tweet">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TweetID" Type="String" Nullable="false" MaxLength="36" Unicode="true" FixedLength="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="TweetText" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="TweetHashtags" Relationship="VisualizationModel.FK_TweetHashtag_0" FromRole="Tweet" ToRole="TweetHashtag" />
+          <NavigationProperty Name="TweetWebsites" Relationship="VisualizationModel.FK_TweetWebsite2_0" FromRole="Tweet" ToRole="TweetWebsite" />
+          <NavigationProperty Name="Websites" Relationship="VisualizationModel.FK_Website_0" FromRole="Tweet" ToRole="Website" />
+        </EntityType>
+        <EntityType Name="TweetHashtag">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TweetID" Type="Int32" Nullable="false" />
+          <Property Name="HashtagID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Hashtag" Relationship="VisualizationModel.FK_TweetHashtag_1" FromRole="TweetHashtag" ToRole="Hashtag" />
+          <NavigationProperty Name="Tweet" Relationship="VisualizationModel.FK_TweetHashtag_0" FromRole="TweetHashtag" ToRole="Tweet" />
+        </EntityType>
+        <EntityType Name="TweetWebsite">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="TweetID" Type="Int32" Nullable="false" />
+          <Property Name="WebsiteID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Tweet" Relationship="VisualizationModel.FK_TweetWebsite2_0" FromRole="TweetWebsite" ToRole="Tweet" />
+          <NavigationProperty Name="Website" Relationship="VisualizationModel.FK_TweetWebsite2_1" FromRole="TweetWebsite" ToRole="Website" />
+        </EntityType>
+        <EntityType Name="Website">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="600" Unicode="true" FixedLength="false" />
+          <Property Name="Url" Type="String" Nullable="false" MaxLength="600" Unicode="true" FixedLength="false" />
+          <Property Name="HitCount" Type="Int32" Nullable="false" />
+          <Property Name="TweetID" Type="Int32" Nullable="false" />
+          <Property Name="LongUrlTitle" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Media" Relationship="VisualizationModel.FK_Media_0" FromRole="Website" ToRole="Media" />
+          <NavigationProperty Name="Tweet" Relationship="VisualizationModel.FK_Website_0" FromRole="Website" ToRole="Tweet" />
+          <NavigationProperty Name="TweetWebsites" Relationship="VisualizationModel.FK_TweetWebsite2_1" FromRole="Website" ToRole="TweetWebsite" />
+          <NavigationProperty Name="WebsiteKeywords" Relationship="VisualizationModel.FK_WebsiteKeyword_0" FromRole="Website" ToRole="WebsiteKeyword" />
+          <Property Type="String" Name="DisplayUrl" MaxLength="600" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="WebsiteKeyword">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="WebsiteID" Type="Int32" Nullable="false" />
+          <Property Name="KeywordID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Keyword" Relationship="VisualizationModel.FK_WebsiteKeyword_1" FromRole="WebsiteKeyword" ToRole="Keywords" />
+          <NavigationProperty Name="Website" Relationship="VisualizationModel.FK_WebsiteKeyword_0" FromRole="WebsiteKeyword" ToRole="Website" />
+        </EntityType>
+        <Association Name="FK_TweetHashtag_1">
+          <End Role="Hashtag" Type="VisualizationModel.Hashtag" Multiplicity="1" />
+          <End Role="TweetHashtag" Type="VisualizationModel.TweetHashtag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hashtag">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TweetHashtag">
+              <PropertyRef Name="HashtagID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WebsiteKeyword_1">
+          <End Role="Keywords" Type="VisualizationModel.Keyword" Multiplicity="1" />
+          <End Role="WebsiteKeyword" Type="VisualizationModel.WebsiteKeyword" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Keywords">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WebsiteKeyword">
+              <PropertyRef Name="KeywordID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Media_0">
+          <End Role="Website" Type="VisualizationModel.Website" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Media" Type="VisualizationModel.Medium" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Website">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Media">
+              <PropertyRef Name="SourceSiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TweetHashtag_0">
+          <End Role="Tweet" Type="VisualizationModel.Tweet" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TweetHashtag" Type="VisualizationModel.TweetHashtag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tweet">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TweetHashtag">
+              <PropertyRef Name="TweetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TweetWebsite2_0">
+          <End Role="Tweet" Type="VisualizationModel.Tweet" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TweetWebsite" Type="VisualizationModel.TweetWebsite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tweet">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TweetWebsite">
+              <PropertyRef Name="TweetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Website_0">
+          <End Role="Tweet" Type="VisualizationModel.Tweet" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Website" Type="VisualizationModel.Website" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tweet">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Website">
+              <PropertyRef Name="TweetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TweetWebsite2_1">
+          <End Role="Website" Type="VisualizationModel.Website" Multiplicity="1" />
+          <End Role="TweetWebsite" Type="VisualizationModel.TweetWebsite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Website">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TweetWebsite">
+              <PropertyRef Name="WebsiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WebsiteKeyword_0">
+          <End Role="Website" Type="VisualizationModel.Website" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WebsiteKeyword" Type="VisualizationModel.WebsiteKeyword" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Website">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WebsiteKeyword">
+              <PropertyRef Name="WebsiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SiteTitle">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="600" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="VisualizationModelStoreContainer" CdmEntityContainer="VisualizationEntities">
+          <EntitySetMapping Name="Hashtags">
+            <EntityTypeMapping TypeName="VisualizationModel.Hashtag">
+              <MappingFragment StoreEntitySet="Hashtag">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Tag" ColumnName="Tag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Keywords">
+            <EntityTypeMapping TypeName="VisualizationModel.Keyword">
+              <MappingFragment StoreEntitySet="Keywords">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Keyword1" ColumnName="Keyword" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Media">
+            <EntityTypeMapping TypeName="VisualizationModel.Medium">
+              <MappingFragment StoreEntitySet="Media">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="SourceSiteID" ColumnName="SourceSiteID" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tweets">
+            <EntityTypeMapping TypeName="VisualizationModel.Tweet">
+              <MappingFragment StoreEntitySet="Tweet">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TweetID" ColumnName="TweetID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="TweetText" ColumnName="TweetText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TweetHashtags">
+            <EntityTypeMapping TypeName="VisualizationModel.TweetHashtag">
+              <MappingFragment StoreEntitySet="TweetHashtag">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TweetID" ColumnName="TweetID" />
+                <ScalarProperty Name="HashtagID" ColumnName="HashtagID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TweetWebsites">
+            <EntityTypeMapping TypeName="VisualizationModel.TweetWebsite">
+              <MappingFragment StoreEntitySet="TweetWebsite">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TweetID" ColumnName="TweetID" />
+                <ScalarProperty Name="WebsiteID" ColumnName="WebsiteID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Websites">
+            <EntityTypeMapping TypeName="VisualizationModel.Website">
+              <MappingFragment StoreEntitySet="Website">
+                <ScalarProperty Name="DisplayUrl" ColumnName="DisplayUrl" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="HitCount" ColumnName="HitCount" />
+                <ScalarProperty Name="TweetID" ColumnName="TweetID" />
+                <ScalarProperty Name="LongUrlTitle" ColumnName="LongUrlTitle" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WebsiteKeywords">
+            <EntityTypeMapping TypeName="VisualizationModel.WebsiteKeyword">
+              <MappingFragment StoreEntitySet="WebsiteKeyword">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="WebsiteID" ColumnName="WebsiteID" />
+                <ScalarProperty Name="KeywordID" ColumnName="KeywordID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SiteTitles">
+            <EntityTypeMapping TypeName="VisualizationModel.SiteTitle">
+              <MappingFragment StoreEntitySet="SiteTitles">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

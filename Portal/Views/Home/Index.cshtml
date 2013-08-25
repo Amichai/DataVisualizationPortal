@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Portal.Website>
+
+<script>
+    function search() {
+        var frm = $('#searchForm');
+        $.ajax({
+            url: '/home/search',
+            type: 'POST',
+            data: frm.serialize(),
+        }).done(function (data) {
+            $('#results').html(data);
+        });
+    }
+</script>
+
+<form id="searchForm" action="~/Home/Search">
+    <table>
+        <tr>
+            <td >
+                <h3 style="padding-bottom:20px">Tags:</h3>
+            </td>
+            <td>
+                @Html.TextBox("tagsQuery")
+                </td>
+        </tr>
+        <tr>
+            <td>
+                <h3 style="padding-bottom:20px">Keywords:</h3>
+            </td>
+            <td>
+                @Html.TextBox("keywordsQuery")
+                </td>
+        </tr>
+        <tr>
+            <td>
+                <h3 style="padding-bottom:20px">Sources:</h3>
+            </td>
+            <td>
+                @Html.TextBox("sourcesQuery")
+                </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit">Search</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h4>Results:</h4> 
+                @Model.Count()
+            </td>
+        </tr>
+
+    </table>
+</form>
+
+<div id="results">
+    @{Html.RenderPartial("Results", Model);}
+</div>

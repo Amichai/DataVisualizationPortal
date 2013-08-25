@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d263f2cf2b694b06910335404deb4124" Name="Diagram1">
+        <EntityTypeShape EntityType="VisualizationModel.Hashtag" Width="1.5" PointX="0.75" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisualizationModel.Keyword" Width="1.5" PointX="3" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisualizationModel.Medium" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisualizationModel.Tweet" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisualizationModel.TweetHashtag" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisualizationModel.TweetWebsite" Width="1.5" PointX="5.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisualizationModel.Website" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisualizationModel.WebsiteKeyword" Width="1.5" PointX="5.25" PointY="14.125" IsExpanded="true" />
+        <AssociationConnector Association="VisualizationModel.FK_TweetHashtag_1" ManuallyRouted="false" />
+        <AssociationConnector Association="VisualizationModel.FK_WebsiteKeyword_1" ManuallyRouted="false" />
+        <AssociationConnector Association="VisualizationModel.FK_Media_0" ManuallyRouted="false" />
+        <AssociationConnector Association="VisualizationModel.FK_TweetHashtag_0" ManuallyRouted="false" />
+        <AssociationConnector Association="VisualizationModel.FK_TweetWebsite2_0" ManuallyRouted="false" />
+        <AssociationConnector Association="VisualizationModel.FK_Website_0" ManuallyRouted="false" />
+        <AssociationConnector Association="VisualizationModel.FK_TweetWebsite2_1" ManuallyRouted="false" />
+        <AssociationConnector Association="VisualizationModel.FK_WebsiteKeyword_0" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="VisualizationModel.SiteTitle" Width="1.5" PointX="1.125" PointY="12.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

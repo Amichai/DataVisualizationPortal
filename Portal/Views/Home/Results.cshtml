@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Portal.Website>
+
+
+<table>
+    <thead>
+        <tr>
+            <th style="width:500px; min-width:500px">Title</th>
+            <th style="min-width:100px;width:100px;max-width:100px" >Url</th>
+            <th style="width:500px; min-width:500px">Keywords</th>
+        </tr>
+    </thead>
+
+
+    @for (int i = 0; i < Model.Count(); i++) {
+        var w = Model.ElementAt(i);
+        <tr>
+            <td >
+                @w.Title (@w.HitCount)
+            </td>
+            <td>
+                <a target="_blank" href="@w.Url">@w.DisplayUrl</a>
+            </td>
+            <td>
+                @string.Concat(w.WebsiteKeywords.ToList().Select(j => j.Keyword.Keyword1.ToString() + ", ").ToList())
+            </td>
+        </tr>
+    }
+
+</table>
+
